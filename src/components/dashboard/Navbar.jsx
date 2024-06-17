@@ -1,16 +1,20 @@
-import React from "react";
 import { FaRegBell } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
-import { Link ,Router} from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { useRecoilState } from "recoil";
+import { searchState } from "../../store";
 
 const NavBar = () => {
+  const { logout } = useAuth();
+  const [, setKeyword] = useRecoilState(searchState);
+
   return (
     <div
       style={{ gridColumn: "2/3", gridRow: "-3/-2" }}
       className="border border-slate-100 flex items-center justify-between"
     >
       <div className=" ml-8">
-        <form className="max-w-md mx-auto ">
+        <div className="max-w-md mx-auto ">
           <label
             htmlFor="default-search"
             className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -38,18 +42,13 @@ const NavBar = () => {
             <input
               type="search"
               id="default-search"
-              className="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-500 focus:border-gray-600 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
+              className="block w-full p-3 ps-10 text-sm text-gray-800  border border-gray-300 rounded-lg bg-gray-50 focus:ring-gray-500 focus:border-gray-600 "
               placeholder="Search Employees, More..."
+              onChange={(e) => setKeyword(e.target.value)}
               required
-            />
-            <button
-              type="submit"
-              className="text-gray-500 absolute end-1.5 bottom-1.5    font-medium rounded-lg text-sm px-4 py-2  dark:hover:text-gray-900 dark:focus:ring-gray-800"
-            >
-              Search
-            </button>
+            /> 
           </div>
-        </form>
+        </div>
       </div>
 
       <div className="flex items-center mr-8">
@@ -68,9 +67,9 @@ const NavBar = () => {
             ></path>
           </svg>
         </div>
-        <Link to="/login">
+        <button onClick={logout}>
           <IoLogOutOutline />
-        </Link>
+        </button>
       </div>
     </div>
   );
