@@ -281,8 +281,9 @@
 import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../axiosInstance";
 import * as Yup from "yup";
+import { toast } from "react-hot-toast";
 
 const { Item: FormItem } = Form;
 
@@ -356,13 +357,14 @@ const EmployeeForm = () => {
 
       console.log(response.data);
       navigate("/employee", { state: { createdEmployee: response.data } });
+      toast.success("Employee created successfully");
     } catch (err) {
-      console.error("Error creating user", err);
+      toast.error("Error creating user", err);
     }
   };
 
   return (
-    <Form {...formItemLayout} style={{ maxWidth: 600 }}>
+    <Form {...formItemLayout} style={{ maxWidth: 600  }} >
       <FormItem
         label="FirstName"
         name="firstName"
