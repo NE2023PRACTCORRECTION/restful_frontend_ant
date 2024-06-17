@@ -107,6 +107,12 @@ const SignUp = () => {
             >
               Sign Up
             </button>
+            <div className="w-full  flex pt-8  gap-2 text-xl">
+              <p className="">Already have account </p>
+              <Link to={"/login"} className="text-indigo-600">
+                Login
+              </Link>
+            </div>
           </div>
         </form>
       </div>

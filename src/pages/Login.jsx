@@ -78,7 +78,6 @@ const Login = () => {
               />
             </div>
           </div>
-         
 
           <div>
             <button
@@ -87,9 +86,14 @@ const Login = () => {
             >
               Sign in
             </button>
+            <div className="w-full  flex pt-8  gap-2 text-xl">
+              <p className="">create account </p>
+              <Link to={"/signup"} className="text-indigo-600">
+                Sign Up
+              </Link>
+            </div>
           </div>
         </form>
-
       </div>
     </div>
   );
